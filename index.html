@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="mystyle.css">
+      <script src="myjavascript.js"></script>
+      <title>Document</title>
+  </head>
+  <body>
+      <!-- HTML for the lightbox/floating window -->
+      <div class="lightbox">
+          <div class="lightbox-content">
+          <h2 id="welcome">Welcome to PFRAM online</h2>
+          <p></p>
+          <button id="start-button">Start</button>
+          </div>
+      </div>
+      <!-- HTML FOR HAMBURGER MENU BUTTON-->
+    <div id="titleandmenu">
+      <button onclick="toggleMenu()"  class="mainmenu-icon" id="hamburg">☰ MENU</button>
+      <p id="pfram"><strong>PFRAM</strong> localweb.</P>
+    </div>
+  
+    <div class="mainmenuToggle" id="menuToggle">
+      <br><br><br><br>
+      <ul class="main-menu">
+        <li><a href="#" onclick="button1()">NEW PROJECT</a></li>
+        <li><a href="#" onclick="myFunction2()">LOAD A PROJECT</a></li>
+        <li><a href="#" onclick="myFunction3()">PRINT PDF</a></li>
+        <li><a href="#" onclick="myFunction4()">SEE CHARTS</a></li>
+      </ul>
+    </div>
+    <!-- HTML FOR NAVIGATION BAR ON TOP-->
+      <nav id='menu' style="display: none;">
+        <ul class="ulCentered">
+          <li><a href="#" onclick="model()">Initial data</a></li>
+          <li><a href='#' onclick="macroeconomic()">Macroeconomic Data</a></li>
+          <li><a class='dropdown-arrow' href='#'>Project data</a>
+            <ul class='sub-menus'>
+              <li><a href="#" onclick="showAccDrivers()">Accounting drivers</a></li>
+              <li><a href='#' onclick="gencriteria()">General criteria</a></li>
+              <li><a href='#'onclick="financing()">Financing</a></li>
+              <li><a href="#" onclick="assets()">Asset specific information</a></li>
+              <li><a href='#' onclick="services()">Services</a></li>
+              <li><a href='#' onclick="funding()">Funding</a></li>
+              <li><a href="#" onclick="showOMC()">Maint, op & other costs</a></li><br>
+              <li><a href='#'>Projection of guarantees</a></li>
+              <li><a href='#'>Charts</a></li>
+              <li><a href='#'>Contract termination</a></li>
+            </ul>
+          </li>
+          <li><a href='#' onclick="showrisk()">Project Risk</a></li>
+          <li><a href='#'>Government statements</a></li>
+          <li><a href='#'>Macro charts</a></li>
+          <li><a href='#'>Shock simulation</a></li>
+          <li><a href='#'>Save</a></li>
+        </ul>
+      </nav>
+
+        <!--FORM 1-->
+      <div id="container-forms">
+        <form class="forms" id="form1" style="display:none">
+          <p class="topictitle">Initial data&nbsp;&nbsp;<p><br><br>
+          <label for="Name of the project" class="formtitles">Name of the project</label>
+          <input type="text" id="inputname" class="textinputs" required><br><br><br><br>
+          
+          <label for="Currency" class="formtitles">Currency</label><br>
+          <input type="radio" id="domfx" value="Domestic" class="radiobuttons" name="radiobuttons">
+          <label for="currency" value="Domestic" class="radiotext">Domestic</label>
+          <input type="radio" id="foreignfx" value="fx" class="radiobuttons" name="radiobuttons" >
+          <label for="currency" class="radiotext" class="radiotext">Foreign</label><br><br><br><br>
+        
+          <label for="Years" class="formtitles" >Beginning of contract</label>
+          <input type="numbers" id="yearscontract"class="textinputs" placeholder="2000" required><br>
+          <small class="smalltext">Years</small><br><br><br><br>
+
+          <label for="Length" class="formtitles" >Length of contract</label>
+          <input type="numbers" id="lengthcontract"class="textinputs" placeholder="50" required><br>
+          <small class="smalltext">Years</small><br><br><br><br>
+
+          <label for="Describe" class="formtitles">Describe the project</label>
+          <textarea id="describe" class="textinputs"  placeholder="Write here..."></textarea><br><br>
+
+          <p class="formtitles" id="yesnoTitle">Is the project under implementation phase?</p>
+          <input type="radio" id="radioyes1" value="Yes" class="radiobuttons" name="radiobuttons1">
+          <label for="Yes" value="Yes" class="radiotext">Yes</label>
+          <input type="radio" id="radiono1" value="No" class="radiobuttons" name="radiobuttons1">
+          <label for="No" class="radiotext" class="radiotext">No</label><br><br>
+
+          <button type="button" title="Go to next form" class="formbutton" onclick="goto2();">Next</button>  
+      </form>
+      <!--FORM 2-->
+      
+      <form class="forms" id="form2" style="display: none ;">
+        <p class="topictitle">Accounting drivers&nbsp;&nbsp;<p><br><br>
+
+        <label for="Typeofproject" class="formtitles">Type of project&nbsp;&nbsp;</label>
+        <select class="combobox" id="combotype">
+            <option value="" disabled selected>Select type...</option>
+            <option value="bot">Design-Build</option>
+            <option value="botd">Design-Build-Finance-Operate</option>
+            <option value="box">Build-Operate-Transfer</option>
+            <option value="box">Buy-Build-Operate</option>
+            <option value="box">Build-Own-Operate</option>
+        </select><br><br><br><br>
+
+        <label for="Howfunded" class="formtitles">How the project is funded</label>
+        <select class="combobox" id="combohow">
+            <option value="" disabled selected >Select type...</option>
+            <option value="bot">Users of the service/User funded</option>
+            <option value="botd">Tax payers/Public funded</option>
+            <option value="box">Combined</option>
+        </select><br><br>
+    
+        <p for="Questionregulate" class="formtitles" id="questionregulateprivate">
+            Does the public sector control 
+            or regulate what services the 
+            private company must provide
+            with the asset, to whom
+            it must provide them, and at
+            what price ?
+        </p>
+        <input type="radio" id="radioyes2" value="Yes" class="radiobuttons" name="radiobuttons2">
+        <label for="Yes" value="Yes" class="radiotext">Yes</label>
+        <input type="radio" id="radiono2" value="No" class="radiobuttons" name="radiobuttons2">
+        <label for="No" class="radiotext" class="radiotext">No</label><br><br>
+
+        <p for="Residual control" class="formtitles" id="residualcontrol">
+            Does the public sector mantain
+            any significant residual interest
+            in the asset at the end of
+            the contract?
+        </p>
+        <input type="radio" id="radioyes3" value="Yes" class="radiobuttons" name="radiobuttons3">
+        <label for="Yes" value="Yes" class="radiotext">Yes</label>
+        <input type="radio" id="radiono3" value="No" class="radiobuttons" name="radiobuttons3">
+        <label for="No" class="radiotext" class="radiotext">No</label><br><br>
+
+        <p for="Whoincontrol" class="formtitles" id="whoincontrol">
+            Who is in control of
+            the PPP related assets?
+        </p>
+        <select id="comboboxwhocontrol">
+            <option value="" disabled selected>Select type...</option>
+            <option value="bot">Users of the service/User funded</option>
+            <option value="botd">Tax payers/Public funded</option>
+            <option value="box">Combined</option>
+        </select><br><br><br>
+        <button type="button" title="Go to previous form" class="formBackbutton" onclick="backto1();">Back</button>
+        <button type="button" title="Go to next form"class="formbutton" onclick= "goto3();">Next</button>
+    </form>
+
+    <!--FORM 3-->
+
+    <form class="forms" id="form3" style="display: none ;">
+        <p class="topictitle">General criteria&nbsp;&nbsp;<p><br><br>
+
+        <label for="Corporate tax" class="formtitles">Corporate income tax rate:</label>
+        <input type="numbers" id="corptax"class="textinputs" placeholder="0.00%"><br><br><br><br>
+
+        <label for="Imported component" class="formtitles">Inported component of asset:</label>
+        <input type="numbers" id="impasset" class="textinputs" placeholder="0.00%"><br><br><br>
+
+        <button type="button" title="Go to previous form" class="formBackbutton" onclick="backto2();">Back</button>
+        <button type="button" title="Go to next form" class="formbutton" onclick="goto4();">Next</button>
+    </form>
+
+    <!--FORM 4-->
+
+    <form class="forms" id="form4" style="display: none ;" >
+        <p class="topictitle">Financing&nbsp;&nbsp;<p><br><br>
+        
+        <label for="Sharefinancedbydebt" class="formtitles">Share of investment cost financed by debt:</label>
+        <input type="numbers" id="bydebt"class="textinputs" placeholder="0.00%"><br><br><br><br>
+
+        <label for="Interes rate" class="formtitles">Interest rate on loans:</label>
+        <input type="numbers" id="interestrate"class="textinputs" placeholder="0.00%"><br><br>
+        <br><br>
+        <label for="debtinforeign" class="formtitles">Share of debt in foreign currency (%):</label>
+        <input type="numbers" id="debtinforeign"class="textinputs" placeholder="0.00%"><br><br><br><br>
+
+        <label for="govshare" class="formtitles">Government shareholding (if any):</label>
+        <input type="numbers" id="govshare" class="textinputs" placeholder="0.00%"><br><br><br>
+
+        <button type="button" title="Go to previous form" class="formBackbutton" onclick="backto3();">Back</button>
+        <button type="button" title="Go to next form" class="formbutton" onclick="gotoassets();">Next</button>
+    </form>
+
+    <!--FORM 5 -->
+  
+        <form class="forms" id="assets" style="display: none;">
+          <p class="topictitle">Assets parameters&nbsp;&nbsp;<p><br><br>
+            <div id="btnscover">
+                <p id="addText">Add asset</p>
+                <button type="button" title="Add new asset" id="addTabbtn" onclick="addAsset();">+</button>
+                <button type="button" id="removeTabbtn" title="Remove last asset created." onclick="removeAsset();"><strong>-</strong></button>
+                <p id="removeText">Remove asset</p>
+                <div id="emptydiv1"><br></div>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div id="wrapAsset" class="wrapClass" style="display: none;">
+              <br>
+                <label id="assetdescription">Asset 1</label><br>
+                <p class="formassetstitles">Name of asset</p>
+                <input type="text" class="assetstextinputs" id="nameasset" required>
+                <p class="formassetstitles">Construction period (total number of years)</p>
+                <input type="numbers" class="assetstextinputs" id="period" required>
+                <p class="formassetstitles">Year construction begins (e.g 3º year of contract)</p>
+                <input type="numbers" class="assetstextinputs" id="begins" required>
+                <p class="formassetstitles">Useful life (total number of years)</p>
+                <input type="numbers" class="assetstextinputs" id="life" required>
+                <p class="formassetstitles">Total construction cost (Domestic currency)</p>
+                <input type="numbers" class="assetstextinputs" id="cost" required>
+                <p class="formassetstitles">Land cost paid by the private partner (Domestic currency)</p>
+                <input type="numbers" class="assetstextinputs" id="paid" required><br><br>
+                <!--ESTE BOTON HACE LOS CALCULOS EN LAS TABLAS -->
+                <button type="button" title="Save the data" class="formbutton" onclick="calcConstCost();">Calculate</button> 
+            </div>
+            <button type="button" title="Go to previous form" class="formBackbutton" onclick="backto4();">Back</button>
+            <button type="button" title="Go to next form" class="formbutton" onclick="gotoservices();">Next</button>   
+        </form>
+
+
+        <!--FORM 6 -->
+
+        <form class="forms" id="services" style="display: none;" >
+          <p class="topictitle">Services details&nbsp;&nbsp;<p><br><br>
+          <div id="btnservices" class="btnservices" style="display: inline-block;">
+            <p id="addServText" style="display: inline-block;">Add service</p>
+            <button type="button" id="addServbtn" onclick="addServices()" style="display: inline-block;">+</button>
+            <button type="button" id="removeServbtn" onclick="removeServices()" style="display: inline-block;"><strong> - </strong></button>
+            <p id="removeServText" style="display: inline-block;">Remove service</p>
+            <div id="emptydiv2"><br></div>
+          </div>
+          <div id="wrapServices" class="wrapServClass" style="display: none;">
+            <br>
+            <label id="servdescription">Service 1</label><br>
+            <p class="formassetstitles">Unit</p>
+            <input type="text" class="assetstextinputs" id="unitservice" required>
+            <p class="formassetstitles">Start year</p>
+            <input type="numbers" class="assetstextinputs" id="start" required><br><br>
+            <div id="funded">
+              <br>
+              <p class="fundtitles">&nbsp;&nbsp;&nbsp;Users funded</p>
+              <p class="formassetstitles">Initial price</p>
+              <input type="numbers" class="assetstextinputs" id="start" required><br><br>
+              <p class="formassetstitles">Initial demand</p>
+              <input type="numbers" class="assetstextinputs" id="start" required><br><br>
+            </div>
+            <div id="govfunded">
+              <br>
+              <p class="fundtitles">&nbsp;&nbsp;&nbsp;Government funded</p>
+              <p class="formassetstitles">Initial price</p>
+              <input type="numbers" class="assetstextinputs" id="start" required><br><br>
+              <p class="formassetstitles">Initial demand</p>
+              <input type="numbers" class="assetstextinputs" id="start" required><br><br>
+            </div>
+            <button type="button" title="Go back to assets form" class="formbutton" >Calculate</button> 
+          </div>
+          <button type="button" title="Go to previous form" class="formBackbutton" onclick="backtoassets();">Back</button>
+          <button type="button" title="Go to next form" class="formbutton" onclick="showFunded()">Next</button>   
+        </form>
+      
+    
+    <!--FORM 7 -->
+      
+    <form class="forms" id="fund" style="display: none;">
+      <p class="topictitle">Fundings&nbsp;&nbsp;</p><br><br>
+      <button type="button" title="Users funded" class="fundbtn" id="users" onclick="showUsersfund()">Users</button>
+      <button type="button" title="Government funded" class="fundbtn" id="government" onclick="showGovfund()">Government</button>
+      <!--DIV CONTENEDOR DEL FORM CON PREGUNTAS DEL USER FUNDED-->
+      <div id="fundedcontainer">
+          <br>
+          <br>
+          <br>
+          <label for="Type of funding" class="description">Type of funding</label><br>
+          <br>
+          <br>
+          <p for="howInputTariffs" class="formtitles" id="inputTariffs">
+            How do you want to input the tariffs ?
+          </p>
+          <input type="radio" id="radioCalc" value="Calculate" class="radiobuttons" name="calculate">
+          <label for="radioCalc" value="Calculate" class="radiotext">Calculate</label>    
+          <input type="radio" id="radioEnter" value="Enter" class="radiobuttons" name="calculate"> 
+          <label for="radioEnter" value="Enter" class="radiotext">Enter</label> 
+          <br>
+          <div id="unitary">
+            <br>
+            <label for="Unitary Price" class="description">Unitary Price</label><br>
+            <br>
+            <br>
+            <label for="comboCurrency" class="formtitles">Base Tariff&nbsp;&nbsp;</label>
+            <select class="combobox" id="comboCurrency">
+                <option value="" disabled selected >Select currency...</option>
+                <option value="bot">Foreign currency</option>
+                <option value="botd">National currency</option>
+            </select><br><br><br><br>
+            <p for="inflationIndex" class="formtitles" id="inflationindexP">
+              Dom Inflation indexed ?
+            </p>
+            <input type="radio" id="inflationIndexYes" value="Yes" class="radiobuttons" name="inflationIndex">
+            <label for="Yes" value="Yes" class="radiotext">Yes</label>    
+            <input type="radio" id="inflationIndexNo" value="Yes" class="radiobuttons" name="inflationIndex">
+            <label for="No" value="No" class="radiotext">No</label> 
+            <br>
+            <br>
+            <p for="inflationIndex" class="formtitles" id="inflationindexP">
+              Ner indexed ?
+            </p>
+            <input type="radio" id="nerIndexYes" value="Yes" class="radiobuttons" name="nerIndex">
+            <label for="Yes" value="Yes" class="radiotext">Yes</label>    
+            <input type="radio" id="nerIndexNo" value="No" class="radiobuttons" name="nerIndex">
+            <label for="No" value="No" class="radiotext">No</label> 
+            <br>
+            <br>
+            <p class="formtitles">Other adjustment factor(%) (e.g, population growth, world trade growth, etc.)</p>
+            <br>
+            <button class="fill-Button">Enter</button>
+          </div>
+          <div id="demand">
+            <br>
+            <label for="Demand for services" class="description">Demand for services</label><br>
+            <br>
+            <br>
+            <label for="comboCurrency" class="formtitles">Link to GDP&nbsp;&nbsp;</label>
+            <br>
+            <input type="radio" id="linkYes" value="Yes" class="radiobuttons" name="linkGDP">
+            <label for="Yes" value="Yes" class="radiotext">Yes</label>    
+            <input type="radio" id="linkNo" value="No" class="radiobuttons" name="linkGDP">
+            <label for="No" value="No" class="radiotext">No</label> 
+            <br>
+            <br>
+            <p class="formtitles">Other adjustment factor(%) (e.g, population growth, world trade growth, etc.)</p>
+            <br>
+            <button class="fill-Button">Enter</button>
+          </div>
+          <br>
+      </div>
+       <!--DIV CONTENEDOR DEL FORM CON PREGUNTAS DEL USER FUNDED-->
+      <div id="governmentcontainer" style="display: none;">
+        <br>
+        <br>
+        <br>
+        <label for="Type of funding" class="description">Type of funding</label><br>
+        <br>
+        <br>
+        <p for="howInputTariffs" class="formtitles" id="inputTariffs">
+          How do you want to input the tariffs ?
+        </p>
+        <input type="radio" id="radioCalc" value="Calculate" class="radiobuttons" name="calculate">
+        <label for="radioCalc" value="Calculate" class="radiotext">Calculate</label>    
+        <input type="radio" id="radioEnter" value="Enter" class="radiobuttons" name="calculate"> 
+        <label for="radioEnter" value="Enter" class="radiotext">Enter</label> 
+        <br>
+        <div id="unitary">
+          <br>
+          <label for="Unitary Price" class="description">Unitary Price</label><br>
+          <br>
+          <br>
+          <label for="comboCurrency" class="formtitles">Base Tariff&nbsp;&nbsp;</label>
+          <select class="combobox" id="comboCurrency">
+              <option value="" disabled selected >Select currency...</option>
+              <option value="bot">Foreign currency</option>
+              <option value="botd">National currency</option>
+          </select><br><br><br><br>
+          <p for="inflationIndex" class="formtitles" id="inflationindexP">
+            Dom Inflation indexed ?
+          </p>
+          <input type="radio" id="inflationIndexYes" value="Yes" class="radiobuttons" name="inflationIndex">
+          <label for="Yes" value="Yes" class="radiotext">Yes</label>    
+          <input type="radio" id="inflationIndexNo" value="Yes" class="radiobuttons" name="inflationIndex">
+          <label for="No" value="No" class="radiotext">No</label> 
+          <br>
+          <br>
+          <p for="inflationIndex" class="formtitles" id="inflationindexP">
+            Ner indexed ?
+          </p>
+          <input type="radio" id="nerIndexYes" value="Yes" class="radiobuttons" name="nerIndex">
+          <label for="Yes" value="Yes" class="radiotext">Yes</label>    
+          <input type="radio" id="nerIndexNo" value="No" class="radiobuttons" name="nerIndex">
+          <label for="No" value="No" class="radiotext">No</label> 
+          <br>
+          <br>
+          <p class="formtitles">Other adjustment factor(%) (e.g, population growth, world trade growth, etc.)</p>
+          <br>
+          <button class="fill-Button">Enter</button>
+        </div>
+        <div id="demand">
+          <br>
+          <label for="Demand for services" class="description">Demand for services</label><br>
+          <br>
+          <br>
+          <label for="comboCurrency" class="formtitles">Link to GDP&nbsp;&nbsp;</label>
+          <br>
+          <input type="radio" id="linkYes" value="Yes" class="radiobuttons" name="linkGDP">
+          <label for="Yes" value="Yes" class="radiotext">Yes</label>    
+          <input type="radio" id="linkNo" value="No" class="radiobuttons" name="linkGDP">
+          <label for="No" value="No" class="radiotext">No</label> 
+          <br>
+          <br>
+          <p class="formtitles">Other adjustment factor(%) (e.g, population growth, world trade growth, etc.)</p>
+          <br>
+          <button class="fill-Button">Enter</button>
+        </div>
+        <br>
+    </div>
+        <button type="button" title="Go to previous form" class="formBackbutton" onclick="backtofund();">Back</button>
+        <button type="button" title="Go to next form" class="formbutton" onclick="gotoOMC();">Next</button>   
+    </form>
+   
+    <!--DIV CON LAS TARJETAS DE LA OPCION OPERATION AND MAINTENANCE-->
+    <div class="card-container" id="cardcontainer" style="display: none;">
+      <div class="card">
+        <div id="mntncCardPic">
+          <div class="circle"></div>
+        </div>
+        <h4>Maintenance</h4>
+        <p>Card description goes here.</p>
+        <button class="cardButton">Enter data</button>
+      </div>
+      <div class="card">
+        <div id="operCardPic">
+          <div class="circle2"></div>
+        </div>
+        <h4>Operation</h4>
+        <p>Card description goes here.</p>
+        <button class="cardButton">Enter data</button>
+      </div>
+      <div class="card">
+        <div id="feeCardPic">
+          <div class="circle3"></div>
+        </div>
+        <h4>Users fees for government</h4>
+        <p>Card description goes here.</p>
+        <button class="cardButton">Enter data</button>
+      </div>
+      <div class="card">
+        <div id="royalCardPic">
+          <div class="circle4"></div>
+        </div>
+        <h4>Royalties</h4>
+        <p>Card description goes here.</p>
+        <button class="cardButton">Enter data</button>
+      </div>
+      <div class="card">
+        <div id="OpayCardPic">
+          <div class="circle5"></div>
+        </div>
+        <h4>Other payments to government</h4>
+        <p>Card description goes here.</p>
+        <button class="cardButton">Enter data</button>
+      </div>
+      <div class="card">
+        <div id="OcostCardPic">
+          <div class="circle6"></div>
+        </div>
+        <h4>Other costs</h4>
+        <p>Card description goes here.</p>
+        <button class="cardButton">Enter data</button>
+      </div>
+    </div>
+
+
+    <!--DIV CON LAS TARJETAS DE LA OPCION MACROECONOMIC DATA-->
+      <div id="macroeconomic" style="display: none;">
+        
+        <h4 id="macroH4">Country parameters</h4>
+
+        <div class="macro-container" id="macrocontainer">
+            <div id="macrocard1">
+              <div class="macroCardPic">
+                  <div id="macrocircle1"></div>
+              </div>
+              <h4 class="cardMacroTitle">Nominal gdp in national currency <small> (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div> 
+          
+            <div id="macrocard2">
+              <div class="macroCardPic">
+                  <div id="macrocircle2"></div>
+              </div>
+              <h4 class="cardMacroTitle">Ner Dom<small> Relevant fx</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>  
+          
+            <div id="macrocard3">
+              <div class="macroCardPic">
+                  <div id="macrocircle3"></div>
+              </div>
+              <h4 class="cardMacroTitle">Cash balance<small> (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>  
+
+            <div id="macrocard4">
+              <div class="macroCardPic">
+                  <div id="macrocircle4"></div>
+              </div>
+              <h4 class="cardMacroTitle">Real GDP in national currency<small> (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>
+
+            <div id="macrocard5">
+              <div class="macroCardPic">
+                  <div id="macrocircle5"></div>
+              </div>
+              <h4 class="cardMacroTitle">Primary net lending/borrowing <small>  Primary balance (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>
+
+            <div id="macrocard6">
+              <div class="macroCardPic">
+                  <div id="macrocircle6"></div>
+              </div>
+              <h4 class="cardMacroTitle">Government gross debt projections, DSA<small> (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>
+
+            <div id="macrocard7">
+              <div class="macroCardPic">
+                  <div id="macrocircle7"></div>
+              </div>
+              <h4 class="cardMacroTitle">GDP deflator<small> (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>
+
+            <div id="macrocard8">
+              <div class="macroCardPic">
+                  <div id="macrocircle8"></div>
+              </div>
+              <h4 class="cardMacroTitle">Net lending/borrowing <small>Overall balance (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>
+
+            <div id="macrocard9">
+              <div class="macroCardPic">
+                  <div id="macrocircle9"></div>
+              </div>
+              <h4 class="cardMacroTitle">Government revenue<small> (billion)</small></h4>
+              <p class="cardMacroDescr">Card description goes here.</p>
+              <button class="cardButton">Enter data</button>
+            </div>
+
+        </div> 
+      </div>
+
+
+
+
+      
+      <!--DIV DE RISK --------------------------------------------------------------------------------------------------------> 
+      <div id="risks" style="display: none;">
+        <h3 id="riskH3">Risk Class</h3>
+        <div class="risk-container" >
+          <div class="risk-card">
+              <div class="riskPic"></div>
+              <h4 class="riskH4">Governance risks</h4>
+              <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Construction risks</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Demand risks</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Operational and performance risks</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Financial risks</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Force majeure</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Material adverse government actions</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Change in law</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Rebalancing of financial equilibrium</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Renegotiation</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Contract termination</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Environmental impact (Mitigation)</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Disaster risk and resilience (Adaption)</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+          <div class="risk-card">
+            <div class="riskPic"></div>
+            <h4 class="riskH4">Fiscal risk assessment matrix</h4>
+            <button class="cardButton">Enter data</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </body>
+<script src="lightbox.js"></script>
+<script src="myjavascript.js"></script>
+</html>
