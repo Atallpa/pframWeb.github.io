@@ -77,7 +77,7 @@ liElements.forEach((liElement) => {
     document.getElementById("assets").style.display="none";
     document.getElementById("services").style.display="none";
     document.getElementById("fund").style.display="none";
-    document.getElementById("cardcontainer").style.display="none";
+    document.getElementById("operation").style.display="none";
     selector();
     window.scrollTo({
       top: 0,
@@ -214,7 +214,7 @@ function macroeconomic(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="none";
+  document.getElementById("operation").style.display="none";
   document.getElementById("macroeconomic").style.display="grid";
   document.getElementById("risks").style.display="none";
 }
@@ -227,7 +227,7 @@ function showAccDrivers(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="none";
+  document.getElementById("operation").style.display="none";
   document.getElementById("macroeconomic").style.display="none";
   document.getElementById("risks").style.display="none";
 
@@ -240,7 +240,7 @@ function gencriteria(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="none"; 
+  document.getElementById("operation").style.display="none"; 
   document.getElementById("macroeconomic").style.display="none";
   document.getElementById("risks").style.display="none";
 }
@@ -252,7 +252,7 @@ function financing(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="none"; 
+  document.getElementById("operation").style.display="none"; 
   document.getElementById("macroeconomic").style.display="none";
   document.getElementById("risks").style.display="none";
 }
@@ -264,7 +264,7 @@ function assets(){
   document.getElementById("assets").style.display="block";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="none"; 
+  document.getElementById("operation").style.display="none"; 
   document.getElementById("macroeconomic").style.display="none";
   document.getElementById("risks").style.display="none";
 }
@@ -276,7 +276,7 @@ function services(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="block";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="none"; 
+  document.getElementById("operation").style.display="none"; 
   document.getElementById("macroeconomic").style.display="none";
   document.getElementById("risks").style.display="none";
 }
@@ -288,13 +288,14 @@ function funding(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="block";
-  document.getElementById("cardcontainer").style.display="none"; 
+  document.getElementById("operation").style.display="none"; 
   document.getElementById("macroeconomic").style.displayy="none";
   document.getElementById("risks").style.display="none";
   showUsersfund();
 }
 
 function showOMC(){
+  document.getElementById("operation").style.display="block";
   document.getElementById("form1").style.display="none";
   document.getElementById("form2").style.display="none";
   document.getElementById("form3").style.display="none";
@@ -302,7 +303,7 @@ function showOMC(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="grid";
+  
   document.getElementById("macroeconomic").style.display="none";
   document.getElementById("risks").style.display="none";
   
@@ -316,7 +317,7 @@ function showrisk(){
   document.getElementById("assets").style.display="none";
   document.getElementById("services").style.display="none";
   document.getElementById("fund").style.display="none";
-  document.getElementById("cardcontainer").style.display="none";
+  document.getElementById("operation").style.display="none";
   document.getElementById("macroeconomic").style.display="none";
   document.getElementById("risks").style.display="grid";
 }
